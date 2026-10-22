@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="EQ">
+  <meta name="theme-color" content="#0b0b0d">
+  <link rel="manifest" href="manifest.json">
+  <title>EQ Emberton</title>
+  <style>
+    :root {
+      --bg: #0b0b0d;
+      --card: #16161a;
+      --text: #f2f2f4;
+      --muted: #8a8a93;
+      --accent: #f5c451;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, system-ui, sans-serif;
+      padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom);
+    }
+    main { max-width: 460px; margin: 0 auto; padding-top: 28px; }
+    h1 { font-size: 22px; font-weight: 600; margin: 0 0 24px; letter-spacing: -0.2px; }
+    .card { background: var(--card); border-radius: 18px; padding: 20px; margin-bottom: 14px; }
+    .file {
+      display: block; padding: 14px; border-radius: 12px;
+      border: 1px dashed #333; color: var(--muted);
+      text-align: center; cursor: pointer; font-size: 15px;
+    }
+    .file input { display: none; }
+    audio { width: 100%; margin-top: 14px; }
+    .band { margin: 18px 0; }
+    .band:first-child { margin-top: 0; }
+    .band-head {
+      display: flex; justify-content: space-between;
+      font-size: 14px; color: var(--muted); margin-bottom: 8px;
+    }
+    input[type=range] { width: 100%; accent-color: var(--accent); }
+    .presets { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    button {
+      padding: 13px; border-radius: 12px; border: none;
+      background: #24242a; color: var(--text);
+      font-size: 15px; cursor: pointer;
+    }
+    button.active { background: var(--accent); color: #111; font-weight: 600; }
+    button.ghost { background: transparent; color: var(--muted); width: 100%; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>EQ Emberton</h1>
+
+    <div class="card">
+      <label class="file">
+        Choisir un fichier audio
+        <input type="file" id="file" accept="audio/*">
+      </label>
+      <audio id="player" controls playsinline></audio>
+    </div>
+
+    <div class="card" id="bands"></div>
+
+    <div class="card">
+      <div class="presets" id="presets"></div>
+      <button class="ghost" id="reset">Réinitialiser</button>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
